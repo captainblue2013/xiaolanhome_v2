@@ -2,5 +2,8 @@
 
 module.exports = {
     '/':'get.index.index',
-    '/test':'get.index.test'
+    '/article':'get.article.list',
+    '/article/{id}':'get.article.item',
+    //'/tag':'get.tag.list',
+    //'/tag/{id}':'get.tag.article'
 };

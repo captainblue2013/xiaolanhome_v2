@@ -7,7 +7,7 @@
 var Controller = {};
 
 Controller.index = function (req,res) {
-    res.end('hello');
+    res.html('index.html');
 };
 
 Controller.detail = function(req,res){
