@@ -4,6 +4,9 @@
   "description": "xiaolan home page ",
   "main": "server.js",
   "dependencies": {
+    "amazeui": "^2.7.0",
+    "bootstrap": "^3.3.6",
+    "jquery": "^2.2.4",
     "xiaolan": "^1.2.8"
   },
   "devDependencies": {},
