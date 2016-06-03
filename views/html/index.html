@@ -1,53 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>Sidebar | Amaze UI Example</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <link rel="alternate icon" type="image/png" href="assets/i/favicon.png">
-    <link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/2.7.0/css/amazeui.min.css"/>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-<div class="am-g am-g-fixed">
-    <div class="am-u-md-9 am-u-md-push-3">
-        <div class="am-g">
-            <div class="am-u-sm-11 am-u-sm-centered">
-                <div class="am-cf am-article">
-                    222
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="am-u-md-3 am-u-md-pull-9 my-sidebar">
-        <div class="am-offcanvas" id="sidebar">
-            <div class="am-offcanvas-bar">
-                <div id="avatar">
-                    <img src="/img/avatar.gif" title="开发者小蓝">
-                    <p>开发者小蓝</p>
-                </div>
-                <ul class="am-nav">
-                    <li class="active"><a href="/"><span class="am-icon-home"></span>文章</a></li>
-                    <li><a href="/search"><span class="am-icon-search"></span>搜索</a></li>
-                    <li><a href="/tags"><span class="am-icon-tags"></span>标签</a></li>
-                    <li><a href="/links"><span class="am-icon-link"></span>友链</a></li>
-                </ul>
-                <div class="quick-link">
-                    <a target="_blank" href="https://github.com/captainblue2013" class="am-icon-md am-icon-github"></a>
-                    <a target="_blank" href="http://weibo.com/lanhaosongzi/profile" class="am-icon-md am-icon-weibo"></a>
-                    <a target="_blank" href="http://fyscu.com" class="am-icon-md am-icon-sitemap"></a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <a href="#sidebar" class="am-btn am-btn-sm am-btn-success am-icon-bars am-show-sm-only my-button" data-am-offcanvas><span class="am-sr-only">侧栏导航</span></a>
-</div>
+{% extends 'layout.html' %}
 
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/amazeui.min.js"></script>
-</body>
-</html>
+{% block content %}
+<p>This is just an {{content}} page.</p>
+{% endblock %}

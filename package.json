@@ -6,7 +6,10 @@
   "dependencies": {
     "amazeui": "^2.7.0",
     "bootstrap": "^3.3.6",
+    "dotenvr": "^0.1.1",
     "jquery": "^2.2.4",
+    "mongoose": "^4.4.19",
+    "request": "^2.72.0",
     "xiaolan": "^1.2.8"
   },
   "devDependencies": {},
