@@ -5,12 +5,14 @@
   "main": "server.js",
   "dependencies": {
     "amazeui": "^2.7.0",
+    "bluebird": "^3.4.0",
     "bootstrap": "^3.3.6",
     "dotenvr": "^0.1.1",
     "jquery": "^2.2.4",
     "mongoose": "^4.4.19",
     "request": "^2.72.0",
-    "xiaolan": "^1.2.8"
+    "request-agent": "^1.0.2-b",
+    "xiaolan": "^1.2.9"
   },
   "devDependencies": {},
   "scripts": {

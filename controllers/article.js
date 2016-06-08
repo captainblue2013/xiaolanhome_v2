@@ -7,6 +7,7 @@
 let article = {};
 
 article.list = (req, res) => {
+
     res.end('list');
 };
 
