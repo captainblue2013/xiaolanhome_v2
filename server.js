@@ -4,7 +4,6 @@
 
 //引入配置文件
 var config = require('./config/config');
-
 //引入小蓝框架
 var xiaolan = require('xiaolan')(config);
 

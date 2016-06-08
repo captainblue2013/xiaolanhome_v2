@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-    '/':'get.index.index',
+    '/':'get.article.list',
     '/article':'get.article.list',
     '/article/{id}':'get.article.item',
     //'/tag':'get.tag.list',

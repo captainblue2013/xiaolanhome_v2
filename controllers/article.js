@@ -4,15 +4,31 @@
 
 'use strict';
 
+let articleModel = require('../models/article');
+
 let article = {};
 
 article.list = (req, res) => {
-
-    res.end('list');
+    articleModel.list()
+        .then((list)=>{
+            res.render('index.html',{'list':list});
+        })
+        .catch((err)=>{
+            console.log(err);
+            res.render('error.html',{});
+        });
 };
 
 article.item = (req, res) => {
-    res.end('item');
+    let id = req.params[1];
+    articleModel.detail(id)
+        .then(function (item) {
+            res.render('detail.html',{'item':item});
+        })
+        .catch(function (err) {
+            console.log(err);
+            res.render('error.html',{});
+        });
 };
 
 module.exports = article;

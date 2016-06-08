@@ -1,5 +1,19 @@
+
 {% extends 'layout.html' %}
 
 {% block content %}
-<p>This is just an {{content}} page.</p>
+    <div id="content">
+        <blockquote class="blockquote-fixed">
+            闻到有先后，术业有专攻
+        </blockquote>
+    {% for item in list %}
+        <div class="xl-article">
+            <span class="date am-monospace">{{item._source.modified}}</span>
+            <a target="_blank" href="/article/{{item._id}}" class="title am-text-lg">{{item._source.title}}</a>
+            {% for tag in item._source.keywords %}
+                <span class="tag tc-{{ (tag+'').charAt(0).charCodeAt()%4 }}">{{tag}}</span>
+            {% endfor %}
+        </div>
+    {% endfor %}
+    </div>
 {% endblock %}

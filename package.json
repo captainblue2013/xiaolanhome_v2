@@ -1,15 +1,10 @@
 {
-  "name": "yes",
+  "name": "xiaolanHome",
   "version": "1.0.0",
   "description": "xiaolan home page ",
   "main": "server.js",
   "dependencies": {
-    "amazeui": "^2.7.0",
-    "bluebird": "^3.4.0",
-    "bootstrap": "^3.3.6",
-    "dotenvr": "^0.1.1",
-    "jquery": "^2.2.4",
-    "mongoose": "^4.4.19",
+    "moment": "^2.13.0",
     "request": "^2.72.0",
     "request-agent": "^1.0.2-b",
     "xiaolan": "^1.2.9"

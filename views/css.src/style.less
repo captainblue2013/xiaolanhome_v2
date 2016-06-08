@@ -29,7 +29,6 @@
   }
 
   .am-offcanvas-bar .am-nav > li > a:hover {
-
     color: #fff
   }
 
@@ -79,10 +78,22 @@
   text-align: center
 }
 
+.tc-0{color: rgb(88, 180, 88);}
+.tc-1{color: #2196F3;}
+.tc-2{color: rgb(234, 193, 19);}
+.tc-3{color: #FF5252;}
+
+
+/* START */
+
+
+
 body {
   background: rgb(238, 238, 238);
 }
-
+.am-g-fixed{
+  margin: 0 auto 0 5rem;
+}
 #avatar {
   margin-top: 1rem;
   img {
@@ -111,13 +122,15 @@ body {
   position: fixed;
   max-width: 250px;
   li {
+    font-size: 1.1em;
     color: #999;
     text-align: center;
     padding: 0.5rem 0;
     &:hover {
-      background: none;
+
       a {
         color: #fff;
+        background: none !important;
       }
     }
 
@@ -153,4 +166,28 @@ body {
     }
   }
 }
+#content {
+  padding: 2rem 1rem 0;
 
+  .blockquote-fixed{
+    margin-left: -5rem;
+    border-left:10px solid rgb(14,144,210);
+    font-weight: 600;
+    font-size: 2rem;
+    background: #f6f8f8;
+  }
+  .xl-article {
+    padding: 0.5rem 0;
+    .date{
+      font-family: "monospace";
+    }
+    .title{
+      margin: 0 1rem;
+    }
+    .tag {
+      border-radius: 2px;
+      padding: 0 2px;
+      border: 1px solid rgba(14,144,210, 0.6);
+    }
+  }
+}
