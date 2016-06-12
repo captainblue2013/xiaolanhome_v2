@@ -2,21 +2,20 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-    <div id="base_info" class="about-block tc-0 tc-b-0" data-am-scrollspy="{animation: 'scale-up'}">
-        <p><label>产品名：</label>蓝浩</p>
-        <p><label>生成日期：</label>1988-02-25</p>
-        <p><label>保质期：</label>低调预测70年</p>
-        <p><label>原产地：</label>广东－中山</p>
-        <p><label>加工地：</label>四川－成都－四川大学</p>
-    </div>
-    <div id="website_info" class="about-block tc-1 tc-b-1 am-fr" data-am-scrollspy="{animation: 'scale-up',delay:200}">
-        <p><label>官网地址：</label><a target="_blank" href="http://lanhao.name"><span class="am-icon-sm am-icon-home"></span> lanhao.name</a></p>
-        <p><label>信件往来：</label><a target="_blank" href="mailto:admin@lanhao.name"><span class="am-icon-sm am-icon-twitch"></span> admin@lanhao.name </a></p>
-        <p><label>Github：</label><a target="_blank" href="https://github.com/captainblue2013"><span class="am-icon-sm am-icon-github"></span> captainblue2013</a></p>
-        <p><label>组织：</label><a target="_blank" href="http://fyscu.com"><span class="am-icon-sm am-icon-sitemap"></span> 飞扬研发</a></p>
+    <div id="avatar" class="about-block tc-4 tc-b-4 am-fr" data-am-scrollspy="{animation: 'scale-up'}">
+        <img src="/img/avatar.gif" title="开发者小蓝">
+        <p>关于  －－  开发者小蓝</p>
     </div>
     <div class="am-cf"></div>
-    <div id="skill_info" class="about-block tc-b-4" data-am-scrollspy="{animation: 'scale-up',delay:400}">
+    <div id="base_info" class="about-block tc-4 tc-b-4" data-am-scrollspy="{animation: 'scale-up',delay:100}">
+        <p><label>产品名：</label><a>蓝浩</a></p>
+        <p><label>生成日期：</label><a>1988-02-25</a></p>
+        <p><label>保质期：</label><a>低调预测70年</a></p>
+        <p><label>原产地：</label><a>广东－中山</a></p>
+        <p><label>加工地：</label><a>四川－成都－四川大学</a></p>
+    </div>
+
+    <div id="skill_info" class="about-block tc-b-4 am-fr" data-am-scrollspy="{animation: 'scale-up',delay:200}">
         <div class="am-progress am-progress am-progress-striped am-active" >
             <div class="am-progress-bar am-progress-bar-success" style="width: 80%">Node</div>
         </div>
@@ -35,5 +34,12 @@
         <div class="am-progress am-progress am-progress-striped am-active" >
             <div class="am-progress-bar" style="width: 25%;background-color: #31beb1;">ElasticSearch</div>
         </div>
+    </div>
+    <div class="am-cf"></div>
+    <div id="website_info" class="about-block tc-4 tc-b-4" data-am-scrollspy="{animation: 'scale-up',delay:300}">
+        <p><label>官网地址：</label><a target="_blank" href="http://lanhao.name"><span class="am-icon-sm am-icon-home"></span> lanhao.name</a></p>
+        <p><label>信件往来：</label><a target="_blank" href="mailto:admin@lanhao.name"><span class="am-icon-sm am-icon-twitch"></span> admin@lanhao.name </a></p>
+        <p><label>Github：</label><a target="_blank" href="https://github.com/captainblue2013"><span class="am-icon-sm am-icon-github"></span> captainblue2013</a></p>
+        <p><label>组织：</label><a target="_blank" href="http://fyscu.com"><span class="am-icon-sm am-icon-sitemap"></span> 飞扬研发</a></p>
     </div>
 {% endblock %}
