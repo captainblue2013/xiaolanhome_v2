@@ -6,12 +6,16 @@ const articleModel = require('../models/article');
 
 var Controller = {};
 
-Controller.index = function (req,res) {
+Controller.index = (req,res) => {
 
 };
 
-Controller.detail = function(req,res){
-    res.end('detail');
+Controller.about = (req, res) => {
+    res.render('about.html',{});
+};
+
+Controller.building = (req,res) => {
+    res.render('tags.html',{});
 }
 
 module.exports = Controller;

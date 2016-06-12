@@ -22,12 +22,25 @@ article.list = (req, res) => {
 article.item = (req, res) => {
     let id = req.params[1];
     articleModel.detail(id)
-        .then(function (item) {
+        .then( (item) => {
             res.render('detail.html',{'item':item});
         })
-        .catch(function (err) {
+        .catch( (err) => {
             console.log(err);
             res.render('error.html',{});
+        });
+};
+
+article.loadMore = (req, res) => {
+
+    let from = req.query.from || 0;
+    articleModel.list({from:from})
+        .then( (list) =>{
+            res.json(200,list);
+        })
+        .catch( (err) => {
+            console.log(err);
+            res.json(500,{},err.toString());
         });
 };
 

@@ -47,7 +47,7 @@ article.list = (option) => {
         .body({
             "sort": { "modified": { "order": "desc" }},
             "from": (option && option.from)?option.from:0,
-            "size": (option && option.size)?option.size:20
+            "size": (option && option.size)?option.size:10
         })
         .method('get')
         .send()
@@ -78,7 +78,7 @@ article.formatDate = (obj) => {
 
 module.exports = article;
 
-//article.list().then(function (val) {
+//article.list({from:10}).then(function (val) {
 //    console.log(val);
 //}).catch(function (err) {
 //    console.log('error!'+err);

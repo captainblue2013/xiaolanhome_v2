@@ -4,16 +4,19 @@
 {% block content %}
     <div id="content">
         <blockquote class="blockquote-fixed">
-            闻到有先后，术业有专攻
+            闻道有先后，术业有专攻
         </blockquote>
+        <div id="list"  data-am-observe>
     {% for item in list %}
         <div class="xl-article">
             <span class="date am-monospace">{{item._source.modified}}</span>
             <a target="_blank" href="/article/{{item._id}}" class="title am-text-lg">{{item._source.title}}</a>
-            {% for tag in item._source.keywords %}
-                <span class="tag tc-{{ (tag+'').charAt(0).charCodeAt()%4 }}">{{tag}}</span>
-            {% endfor %}
+            {% for tag in item._source.keywords %}<span class="tag tc-{{ (tag+'').charAt(0).charCodeAt()%4 }} tc-b-{{ (tag+'').charAt(0).charCodeAt()%4 }}">{{tag}}</span>{% endfor %}
         </div>
     {% endfor %}
+        </div>
+        <div id="loading" class="am-progress am-progress-striped am-active" style="opacity: 0;" data-am-scrollspy="{animation:'fade',delay: 300}">
+            <div class="am-progress-bar" style="width: 100%"></div>
+        </div>
     </div>
 {% endblock %}
