@@ -14,8 +14,13 @@ Controller.about = (req, res) => {
     res.render('about.html',{});
 };
 
+Controller.search = (req, res) => {
+    res.render('search.html',{});
+};
+
 Controller.building = (req,res) => {
     res.render('tags.html',{});
-}
+};
+
 
 module.exports = Controller;

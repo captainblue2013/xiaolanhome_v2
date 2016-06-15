@@ -11,6 +11,24 @@
             loadMore($('.xl-article').length,1000);
         });
 
+        var _t;
+
+        $('#search>input').keyup(function (e) {
+            var self = this;
+            clearTimeout(_t);
+            _t = setTimeout(function () {
+                var k = $(self).val();
+                $.get('/article/search?keyword='+k, function (data) {
+                    if(data && data.code==200){
+                        $('#list').html(renderList(data.data));
+
+                    }else{
+                        //error handler
+                    }
+                });
+            },500);
+        });
+
         //action
         var loadMore = function (fromId , delay) {
             fromId = fromId || 0;

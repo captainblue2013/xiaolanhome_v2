@@ -44,4 +44,20 @@ article.loadMore = (req, res) => {
         });
 };
 
+article.search = (req, res) => {
+    if(req.query.keyword) {
+        let keyword = decodeURIComponent(req.query.keyword);
+        articleModel.list({keyword: keyword})
+            .then((list)=> {
+                res.json(200, list);
+            })
+            .catch((err) => {
+                console.log(err);
+                res.json(500, {}, err.toString());
+            });
+    }else{
+        res.json(200,[]);
+    }
+};
+
 module.exports = article;

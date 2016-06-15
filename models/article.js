@@ -41,14 +41,23 @@ article.detail = (id) => {
  *
  */
 article.list = (option) => {
+    let body = {
+        "sort": [{ "modified": { "order": "desc" }}],
+        "from": (option && option.from)?option.from:0,
+        "size": (option && option.size)?option.size:10
+    };
+    if(option && option.keyword){
+        body.query = {
+            match:{
+                '_all':option.keyword
+            }
+        };
+        body.sort.unshift({ "_score": { "order": "desc" }});
+    }
     return requestAgent
         .headers({'content-type':'application/json'})
         .url('http://eeesss.lanhao.name/blog/articles/_search')
-        .body({
-            "sort": { "modified": { "order": "desc" }},
-            "from": (option && option.from)?option.from:0,
-            "size": (option && option.size)?option.size:10
-        })
+        .body(body)
         .method('get')
         .send()
         .then(requestAgent.toJson)
@@ -67,6 +76,8 @@ article.formatDate = (obj) => {
     var list = obj.hits.hits;
     if(list.length){
         for(let k in list){
+            console.log(list[k]._score,list[k]._source.title);
+
             list[k]._source.modified = moment.unix(list[k]._source.modified).format('MM/DD');
         }
     }
@@ -74,7 +85,12 @@ article.formatDate = (obj) => {
     return obj;
 };
 
-
+article.lowScore = (list) => {
+    let result = [];
+    for(let k in list){
+        //
+    }
+};
 
 module.exports = article;
 
