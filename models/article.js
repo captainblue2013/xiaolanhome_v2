@@ -49,7 +49,7 @@ article.list = (option) => {
     if(option && option.keyword){
         body.query = {
             match:{
-                '_all':option.keyword
+                'title':option.keyword
             }
         };
         body.sort.unshift({ "_score": { "order": "desc" }});
@@ -77,7 +77,6 @@ article.formatDate = (obj) => {
     if(list.length){
         for(let k in list){
             console.log(list[k]._score,list[k]._source.title);
-
             list[k]._source.modified = moment.unix(list[k]._source.modified).format('MM/DD');
         }
     }
@@ -87,9 +86,13 @@ article.formatDate = (obj) => {
 
 article.lowScore = (list) => {
     let result = [];
+    let bestScore = list[0]._score;
     for(let k in list){
-        //
+        if(list[k]._score>bestScore/5){
+            result.push(list[k]);
+        }
     }
+    return result;
 };
 
 module.exports = article;

@@ -48,6 +48,7 @@ article.search = (req, res) => {
     if(req.query.keyword) {
         let keyword = decodeURIComponent(req.query.keyword);
         articleModel.list({keyword: keyword})
+            .then(articleModel.lowScore)
             .then((list)=> {
                 res.json(200, list);
             })
