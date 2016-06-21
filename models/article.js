@@ -54,6 +54,14 @@ article.list = (option) => {
         };
         body.sort.unshift({ "_score": { "order": "desc" }});
     }
+    if(option && option.tag){
+        body.query = {
+            match:{
+                'keywords':option.tag
+            }
+        };
+        //body.sort.unshift({ "_score": { "order": "desc" }});
+    }
     return requestAgent
         .headers({'content-type':'application/json'})
         .url('http://eeesss.lanhao.name/blog/articles/_search')
@@ -76,7 +84,6 @@ article.formatDate = (obj) => {
     var list = obj.hits.hits;
     if(list.length){
         for(let k in list){
-            console.log(list[k]._score,list[k]._source.title);
             list[k]._source.modified = moment.unix(list[k]._source.modified).format('MM/DD');
         }
     }
@@ -97,7 +104,7 @@ article.lowScore = (list) => {
 
 module.exports = article;
 
-//article.list({from:10}).then(function (val) {
+//article.list({tag:'php'}).then(function (val) {
 //    console.log(val);
 //}).catch(function (err) {
 //    console.log('error!'+err);

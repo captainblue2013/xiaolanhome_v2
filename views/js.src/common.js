@@ -28,6 +28,21 @@
                 });
             },500);
         });
+        
+        $('#tags .tag').click(function () {
+            var _self = $(this);
+            _self.siblings().removeClass('active');
+            _self.addClass('active');
+            var tag = _self.text();
+            $.get('/article/search?tag='+tag, function (data) {
+                if(data && data.code==200){
+                    $('#list').html(renderList(data.data));
+
+                }else{
+                    //error handler
+                }
+            });
+        });
 
         //action
         var loadMore = function (fromId , delay) {

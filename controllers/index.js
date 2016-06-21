@@ -6,8 +6,17 @@ const articleModel = require('../models/article');
 
 var Controller = {};
 
-Controller.index = (req,res) => {
+Controller.tagSet = null;
 
+Controller.index = (req,res) => {
+    articleModel.list()
+        .then((list)=>{
+            res.render('index.html',{'list':list});
+        })
+        .catch((err)=>{
+            console.log(err);
+            res.render('error.html',{});
+        });
 };
 
 Controller.about = (req, res) => {
@@ -18,9 +27,30 @@ Controller.search = (req, res) => {
     res.render('search.html',{});
 };
 
-Controller.building = (req,res) => {
-    res.render('tags.html',{});
+Controller.tags = (req, res) => {
+    if(!Controller.tagSet){
+        loadTagSet();
+    }
+
+    res.render('tags.html',{tags:Array.from(Controller.tagSet)});
 };
 
+Controller.building = (req,res) => {
+    res.render('building.html',{});
+};
+
+const loadTagSet = () =>{
+    articleModel.list({size:999})
+        .then((list)=>{
+            Controller.tagSet = new Set();
+            for(let k in list){
+                list[k]._source.keywords.forEach((item)=>{
+                    Controller.tagSet.add(item);
+                });
+            }
+        });
+};
 
 module.exports = Controller;
+
+loadTagSet();

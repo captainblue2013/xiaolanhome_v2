@@ -3,4 +3,5 @@ node_modules
 .idea
 .note
 run.js
+test.js
 config/config.js
