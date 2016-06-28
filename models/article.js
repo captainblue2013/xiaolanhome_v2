@@ -76,7 +76,6 @@ article.list = (option) => {
         .then(article.formatDate)
         .then(function (obj) {
             if (obj && obj.hits && obj.hits) {
-                article.cache[cacheKey] = obj.hits.hits;
                 return obj.hits.hits;
             } else {
                 console.log(obj);
