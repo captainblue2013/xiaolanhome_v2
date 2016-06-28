@@ -6,6 +6,7 @@
 
 const requestAgent = require('request-agent').init();
 const moment = require('moment');
+const tool = global.app.libs['tools'].init();
 
 
 let article = {};
@@ -40,44 +41,57 @@ article.detail = (id) => {
  * }
  *
  */
+
+article.cache = {};
+
 article.list = (option) => {
-    let body = {
-        "sort": [{ "modified": { "order": "desc" }}],
-        "from": (option && option.from)?option.from:0,
-        "size": (option && option.size)?option.size:10
-    };
-    if(option && option.keyword){
-        body.query = {
-            match:{
-                'title':option.keyword
-            }
+    let cacheKey = tool.md5(JSON.stringify(option));
+    if(!article.cache[cacheKey]) {
+        console.log('no cache');
+        let body = {
+            "sort": [{"modified": {"order": "desc"}}],
+            "from": (option && option.from) ? option.from : 0,
+            "size": (option && option.size) ? option.size : 10
         };
-        body.sort.unshift({ "_score": { "order": "desc" }});
-    }
-    if(option && option.tag){
-        body.query = {
-            match:{
-                'keywords':option.tag
-            }
-        };
-        //body.sort.unshift({ "_score": { "order": "desc" }});
-    }
-    return requestAgent
-        .headers({'content-type':'application/json'})
-        .url('http://eeesss.lanhao.name/blog/articles/_search')
-        .body(body)
-        .method('get')
-        .send()
-        .then(requestAgent.toJson)
-        .then(article.formatDate)
-        .then(function (obj) {
-            if(obj && obj.hits && obj.hits){
-                return obj.hits.hits;
-            }else{
-                console.log(obj);
-                reject('error from ES');
-            }
+        if (option && option.keyword) {
+            body.query = {
+                match: {
+                    'title': option.keyword
+                }
+            };
+            body.sort.unshift({"_score": {"order": "desc"}});
+        }
+        if (option && option.tag) {
+            body.query = {
+                match: {
+                    'keywords': option.tag
+                }
+            };
+            //body.sort.unshift({ "_score": { "order": "desc" }});
+        }
+        return requestAgent
+            .headers({'content-type': 'application/json'})
+            .url('http://eeesss.lanhao.name/blog/articles/_search')
+            .body(body)
+            .method('get')
+            .send()
+            .then(requestAgent.toJson)
+            .then(article.formatDate)
+            .then(function (obj) {
+                if (obj && obj.hits && obj.hits) {
+                    article.cache[cacheKey] = obj.hits.hits;
+                    return obj.hits.hits;
+                } else {
+                    console.log(obj);
+                    reject('error from ES');
+                }
+            });
+    }else{
+        console.log('with cache');
+        return new Promise((resolved,rejected)=>{
+            resolved(article.cache[cacheKey]);
         });
+    }
 };
 
 article.formatDate = (obj) => {
