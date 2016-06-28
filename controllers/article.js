@@ -16,7 +16,9 @@ article.item = (req, res) => {
     let id = req.params[1];
     articleModel.detail(id)
         .then( (item) => {
-            res.render('detail.html',{'item':item});
+            item?
+            res.render('detail.html',{'item':item})
+                :res.render('error.html',{});
         })
         .catch( (err) => {
             console.log(err);
