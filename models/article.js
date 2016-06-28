@@ -45,7 +45,7 @@ article.detail = (id) => {
 article.cache = {};
 
 article.list = (option) => {
-    let cacheKey = tool.md5(JSON.stringify(option));
+    let cacheKey = tool.md5(JSON.stringify((option)?option:{}));
     if(!article.cache[cacheKey]) {
         console.log('no cache');
         let body = {
