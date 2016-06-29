@@ -8,21 +8,17 @@ let articleModel = require('../models/article');
 
 let article = {};
 
-article.list = (req, res) => {
-
-};
-
 article.item = (req, res) => {
     let id = req.params[1];
     articleModel.detail(id)
         .then( (item) => {
             item?
-            res.render('detail.html',{'item':item})
-                :res.render('error.html',{});
+            res.json(200,item)
+                :res.json(404,null,'not found');
         })
         .catch( (err) => {
             console.log(err);
-            res.render('error.html',{});
+            res.json(500,null,'error');
         });
 };
 

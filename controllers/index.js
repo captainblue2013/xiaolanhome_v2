@@ -19,6 +19,20 @@ Controller.index = (req,res) => {
         });
 };
 
+Controller.item = (req,res) =>{
+    let id = req.params[1];
+    articleModel.detail(id)
+        .then( (item) => {
+            item?
+                res.render('detail.html',{'item':item})
+                :res.render('error.html',{});
+        })
+        .catch( (err) => {
+            console.log(err);
+            res.render('error.html',{});
+        });
+};
+
 Controller.about = (req, res) => {
     res.render('about.html',{});
 };

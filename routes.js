@@ -2,9 +2,8 @@
 
 module.exports = {
     '/':'get.index.index',
-    '/article':'get.article.list',
     '/article/search':'get.article.search',
-    '/article/{id}':'get.article.item',
+    '/article/{id}':'get.index.item',
     '/loadMore':'get.article.loadMore',
     '/tags':'get.index.tags',
     '/about':'get.index.about',
