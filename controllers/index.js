@@ -3,6 +3,7 @@
  */
 
 const articleModel = require('../models/article');
+const redis = global.app.libs['redis'];
 
 var Controller = {};
 
@@ -25,6 +26,14 @@ Controller.item = (req, res) => {
     id = req.params[0];
   }
   articleModel.detail(id)
+    .then((item) => {
+      redis.increase(['blog:view:count','a'+id,1],(e,r)=>{
+        if(e){
+          console.log(e,r);
+        }
+      });
+      return item;
+    })
     .then((item) => {
       item ?
         res.render('detail.html', {'item': item})
