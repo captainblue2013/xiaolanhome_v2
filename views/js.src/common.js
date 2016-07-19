@@ -86,5 +86,4 @@
             return _tagsHTML;
         };
     });
-
-})($ || jQuery);
+})(jQuery);
