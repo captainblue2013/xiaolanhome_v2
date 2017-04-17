@@ -2,6 +2,7 @@
  * Created by lanhao on 15/5/17.
  */
 module.exports = {
+  'test':'hello',
   'version': '1.0.0',
   'port': 3001,
   'ip': null,
@@ -38,3 +39,5 @@ module.exports = {
     }
   }
 };
+
+//generated : 2017-01-23

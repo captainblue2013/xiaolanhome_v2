@@ -1,0 +1,6 @@
+[
+    {
+        "from": "config/config.template.js",
+        "to": "config/config2.js"
+    }
+]
