@@ -14,7 +14,7 @@ let article = {};
 article.detail = (id) => {
     return requestAgent
         .headers({'content-type':'application/json'})
-        .url('http://eeesss.lanhao.name/blog/articles/'+id)
+        .url('http://127.0.0.1:9200/blog/articles/'+id)
         .method('get')
         .send()
         .then(requestAgent.toJson)
@@ -68,7 +68,7 @@ article.list = (option) => {
     }
     return requestAgent
         .headers({'content-type': 'application/json'})
-        .url('http://eeesss.lanhao.name/blog/articles/_search')
+        .url('http://127.0.0.1:9200/blog/articles/_search')
         .body(body)
         .method('get')
         .send()
