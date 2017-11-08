@@ -9,7 +9,7 @@
     "moment": "^2.13.0",
     "request": "^2.72.0",
     "request-agent": "^1.0.2-b",
-    "xiaolan": "^1.2.13"
+    "xiaolan": "1.2.13"
   },
   "devDependencies": {},
   "scripts": {
