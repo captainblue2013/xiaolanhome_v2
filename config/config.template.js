@@ -7,7 +7,7 @@ module.exports = {
   'port': 3001,
   'ip': null,
   'cors': false,
-  'static': ['js', 'css', 'jpg', 'png', 'ico'],
+  'static': ['js', 'css', 'jpg', 'png', 'ico','gif'],
   'modules': {
     'mysql': {
       'import': 0,
