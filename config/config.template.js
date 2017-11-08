@@ -2,7 +2,7 @@
  * Created by lanhao on 15/5/17.
  */
 module.exports = {
-  'test':'@@TEST@@',
+  'test':'xiaolanhome',
   'version': '1.0.0',
   'port': 3001,
   'ip': null,
@@ -34,7 +34,7 @@ module.exports = {
       'import':1,
       'config':{
         'port':6379,
-        'host':'127.0.0.1'
+        'host':'redis'
       }
     }
   }
