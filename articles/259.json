@@ -1,0 +1,10 @@
+{
+  "id": "259",
+  "title": "[JS]对象复制的奇技淫巧一则",
+  "keywords": [
+    "javascript"
+  ],
+  "content": "<p>Javascript的对象操作，直接用 “＝” 结果是对象的一个引用，任意一个引用的改变都会让原对象产生变化。</p>\n\n<p>而很多时候我们需要对一个对象进行“复制”，最直观的方法是遍历原对象，这也是最实际的方法。</p>\n\n<p>而在这我们给出一个“奇技淫巧”，仅适用于对象成员都是基本数据类型。\n(适用于诸如 <code>对象模板</code> 等应用场景)</p>\n\n<pre><code>var a = {\n  &#39;a&#39;:1\n};\n\nvar b = JSON.parse(JSON.stringify(a));\nb.a=2;\n\nconsole.log(a); //Object { a=1}\nconsole.log(b); //Object { a=2}</code></pre>\n\n<p>可以发现，经过序列化／反序列化操作，原对象被“简单”的复制了一遍（主要是因为序列化以后是string简单类型）。\n这个方法代码简单，具体<code>时间效率</code>还需要实际测试一下。</p>",
+  "createdAt": 1433748882,
+  "modified": 1433748882
+}

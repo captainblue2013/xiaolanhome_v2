@@ -1,0 +1,12 @@
+{
+  "id": "275",
+  "title": " 详解spl_autoload_register()函数",
+  "keywords": [
+    "php",
+    "autoload",
+    "oop"
+  ],
+  "content": "<pre><code>在了解这个函数之前先来看另一个函数：__autoload。  </code></pre>\n\n<p>一、__autoload  </p>\n\n<p>这是一个自动加载函数，在PHP5中，当我们实例化一个未定义的类时，就会触发此函数。看下面例子：  </p>\n\n<pre><code>printit.class.php \n\n&lt;?php \n\nclass PRINTIT { \n\n    function doPrint() {\n        echo &#39;hello world&#39;;\n    }\n}\n?&gt; \n\nindex.php \n\n&lt;?\nfunction __autoload( $class ) {\n     $file = $class . &#39;.class.php&#39;;  \n     if ( is_file($file) ) {  \n          require_once($file);  \n     }\n} \n\n$obj = new PRINTIT();\n$obj-&gt;doPrint();\n?&gt;</code></pre>\n\n<p>运行index.php后正常输出hello world。在index.php中，由于没有包含printit.class.php，在实例化printit时，自动调用__autoload函数，参数$class的值即为类名printit，此时printit.class.php就被引进来了。  </p>\n\n<p>在面向对象中这种方法经常使用，可以避免书写过多的引用文件，同时也使整个系统更加灵活。  </p>\n\n<p>二、spl<em>autoload</em>register()  </p>\n\n<p>再看spl<em>autoload</em>register()，这个函数与__autoload有与曲同工之妙，看个简单的例子：  </p>\n\n<pre><code>&lt;?\nfunction loadprint( $class ) {\n     $file = $class . &#39;.class.php&#39;;  \n     if (is_file($file)) {  \n          require_once($file);  \n     } \n} \n\nspl_autoload_register( &#39;loadprint&#39; ); \n\n$obj = new PRINTIT();\n$obj-&gt;doPrint();\n?&gt;</code></pre>\n\n<p>将<strong>autoload换成loadprint函数。但是loadprint不会像</strong>autoload自动触发，这时spl<em>autoload</em>register()就起作用了，它告诉PHP碰到没有定义的类就执行loadprint()。 </p>\n\n<p>spl<em>autoload</em>register() 调用静态方法 </p>\n\n<pre><code>&lt;? \n\nclass test {\n     public static function loadprint( $class ) {\n          $file = $class . &#39;.class.php&#39;;  \n          if (is_file($file)) {  \n               require_once($file);  \n          } \n     }\n} \n\nspl_autoload_register(  array(&#39;test&#39;,&#39;loadprint&#39;)  );\n//另一种写法：spl_autoload_register(  &quot;test::loadprint&quot;  ); \n\n$obj = new PRINTIT();\n$obj-&gt;doPrint();\n?&gt;</code></pre>",
+  "createdAt": 1452835440,
+  "modified": 1452835501
+}

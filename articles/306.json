@@ -1,0 +1,11 @@
+{
+  "id": "306",
+  "title": "深究JS引用類型傳參",
+  "keywords": [
+    "js",
+    "javascript"
+  ],
+  "content": "<h2>深究JS引用類型傳參</h2>\n\n<p>先看一段代碼：</p>\n\n<pre><code>var obj = {\n  name: &#39;Tom&#39;\n};\n\nfunction foo (o) {\n  o.name = &#39;Jack&#39;;\n}\n\nfoo(obj);\n\nconsole.log(obj); //{ name: &#39;Jack&#39; }</code></pre>\n\n<p>是不是說明，在 <code>foo</code> 調用的過程中， <code>obj</code>是按引用傳參的呢？</p>\n\n<p>我們不妨再看一段代碼：</p>\n\n<pre><code>var obj = {\n  name: &#39;Tom&#39;\n};\n\nfunction foo2 (o) {\n  o = {\n    name: &#39;Jack&#39;\n  };\n}\n\nfoo2(obj);\n\nconsole.log(obj); //{ name: &#39;Tom&#39; }</code></pre>\n\n<p>仔細對比上面的代碼，到底參數 <code>o</code> 是不是以 <code>obj</code> 的引用的形式傳進去的呢？</p>\n\n<h2>解釋：</h2>\n\n<p>1.將一個對象賦值給一個變量的含義：</p>\n\n<p><code>var obj = { name: &#39;Tom&#39; } ; </code></p>\n\n<p>這裡首先是通過 <code>{}</code>操作，建立這個對象的內存空間，然後將地址賦值給 <code>obj</code> ，這個很關鍵，反復讀三遍。</p>\n\n<p>2.當這個變量作為參數傳給一個函數</p>\n\n<p><code>foo(obj);</code></p>\n\n<p>正如上面所說，這個時候傳進去的，是一個對象的地址。</p>\n\n<p>所以，如果我們改變 <code>o.name</code>，實際上是改變 <code>obj.name</code>,</p>\n\n<p>於是最後打印出來的是  <code>{ name: &#39;Jack&#39; }</code>。</p>\n\n<p><strong>相比之下</strong></p>\n\n<p>在 <code>foo2</code> 里，我們直接 <code>o = { name: &#39;Jack&#39; }</code> 操作，參考第一條解釋，我們是給“Jack”建立了新的內存空間，然後把地址賦值給 <code>o</code>， 那這個時候<code>o</code>跟<code>obj</code>的關聯的斷開了，</p>\n\n<p>於是，<code>obj</code>還是原來的樣子  <code>{ name: &#39;Tom&#39; }</code></p>",
+  "createdAt": 1490338140,
+  "modified": 1490338463
+}

@@ -6,110 +6,51 @@
 
 const requestAgent = require('request-agent').init();
 const moment = require('moment');
-const tool = global.app.libs['tools'].init();
 
 
 let article = {};
 
 article.detail = (id) => {
-    return requestAgent
-        .headers({'content-type':'application/json'})
-        .url('http://'+process.env.ES_HOST+':9200/blog/articles/'+id)
-        .method('get')
-        .send()
-        .then(requestAgent.toJson)
-        .then(function (obj) {
-            if(obj && obj.found){
-                obj._source.modified = moment.unix(obj._source.modified).format('MM/DD/YYYY');
-                return obj._source;
-            }else{
-                return false;
-            }
-        });
+  let { content } = require('../articles/' + id + '.json');
+  let cache = process.localArticle.map[id];
+  if (cache === undefined) {
+    return null;
+  }
+  let article = {
+    content,
+  };
+  Object.assign(article, cache);
+  return article;
 };
-
-
-
-/**
- *
- * @param option
- * {
- *  page default 0
- *  offset default 0
- *  size default 10
- *  keyword default null
- * }
- *
- */
-
 
 
 article.list = (option) => {
-    let body = {
-        "sort": [{"modified": {"order": "desc"}}],
-        "from": (option && option.from) ? option.from : 0,
-        "size": (option && option.size) ? option.size : 10
-    };
-    if (option && option.keyword) {
-        body.query = {
-            match: {
-                'title': option.keyword
-            }
-        };
-        body.sort.unshift({"_score": {"order": "desc"}});
-    }
-    if (option && option.tag) {
-        body.query = {
-            match: {
-                'keywords': option.tag
-            }
-        };
-        //body.sort.unshift({ "_score": { "order": "desc" }});
-    }
-    return requestAgent
-        .headers({'content-type': 'application/json'})
-        .url('http://'+process.env.ES_HOST+':9200/blog/articles/_search')
-        .body(body)
-        .method('get')
-        .send()
-        .then(requestAgent.toJson)
-        .then(article.formatDate)
-        .then(function (obj) {
-            if (obj && obj.hits && obj.hits) {
-                return obj.hits.hits;
-            } else {
-                console.log(obj);
-                reject('error from ES');
-            }
-        });
+  let from = option && option.from ? Number.parseInt(option.from) : 0;
+
+  return process.localArticle.sortList.slice(from, from + 10);
 };
 
 article.formatDate = (obj) => {
-    var list = obj.hits.hits;
-    if(list.length){
-        for(let k in list){
-            list[k]._source.modified = moment.unix(list[k]._source.modified).format('MM/DD');
-        }
+  var list = obj.hits.hits;
+  if (list.length) {
+    for (let k in list) {
+      list[k]._source.modified = moment.unix(list[k]._source.modified).format('MM/DD');
     }
-    obj.hits.hits = list;
-    return obj;
+  }
+  obj.hits.hits = list;
+  return obj;
 };
 
 article.lowScore = (list) => {
-    let result = [];
-    let bestScore = list[0]._score;
-    for(let k in list){
-        if(list[k]._score>bestScore/5){
-            result.push(list[k]);
-        }
+  let result = [];
+  let bestScore = list[0]._score;
+  for (let k in list) {
+    if (list[k]._score > bestScore / 5) {
+      result.push(list[k]);
     }
-    return result;
+  }
+  return result;
 };
 
 module.exports = article;
 
-//article.list({tag:'php'}).then(function (val) {
-//    console.log(val);
-//}).catch(function (err) {
-//    console.log('error!'+err);
-//});

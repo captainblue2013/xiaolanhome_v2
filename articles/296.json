@@ -1,0 +1,12 @@
+{
+  "id": "296",
+  "title": "php就不能认真一点对待数组？！",
+  "keywords": [
+    "php",
+    "array",
+    "json"
+  ],
+  "content": "<blockquote><p>php 数组，对象混搭的现象由来已久，不过小心一点也就可以了，但是有些地方，真的是坑死你不偿命</p></blockquote>\n\n<h3>黑 is cheap ,show you my code</h3>\n\n<pre><code>$arr = [\n    0 =&gt; &#39;a&#39;,\n    1 =&gt; &#39;b&#39;,\n    2 =&gt; &#39;c&#39;,\n];\necho json_encode($arr);\n\n// [&quot;a&quot;,&quot;b&quot;,&quot;c&quot;]</code></pre>\n\n<p>OK</p>\n\n<p>没有任何问题，但是……</p>\n\n<pre><code>$arr = [\n    //0 =&gt; &#39;a&#39;,\n    1 =&gt; &#39;b&#39;,\n    2 =&gt; &#39;c&#39;,\n];\necho json_encode($arr);\n\n// {&quot;1&quot;:&quot;b&quot;,&quot;2&quot;:&quot;c&quot;}</code></pre>\n\n<h2>WHAT  THE FUCK!!</h2>",
+  "createdAt": 1467868413,
+  "modified": 1467868413
+}

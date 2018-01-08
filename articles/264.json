@@ -1,0 +1,11 @@
+{
+  "id": "264",
+  "title": "编写一个原生的Promise封装函数",
+  "keywords": [
+    "javascript",
+    "promise"
+  ],
+  "content": "<p> ## Show Code First</p>\n\n<pre><code>var Promised = function (fn) {\nreturn function () {\n    var args = [];\n    for(var k in arguments){\n        args.push(arguments[k]);\n    }\n    //console.log(args);\n    return new Promise(function (resolve, reject) {\n        var done = function (e,r) {\n            if(!e){\n                resolve(r);\n            }else{\n                reject(e)\n            }\n        };\n        args.push(done);\n        fn.apply(this,args);\n    });\n}</code></pre>\n\n<h2>How To Use</h2>\n\n<pre><code>var getAjax = Promised(req.get);\ngetAjax(&#39;http://121.41.85.236:33002/beating&#39;).then(function (ret) {\n    console.log(ret.body);\n}).catch(function (err) {\n    console.log(err);\n});</code></pre>",
+  "createdAt": 1442999976,
+  "modified": 1442999976
+}

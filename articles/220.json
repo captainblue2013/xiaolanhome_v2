@@ -1,0 +1,10 @@
+{
+  "id": "220",
+  "title": "［资源］不用翻墙了，httpsqs相关下载",
+  "keywords": [
+    "httpsqs"
+  ],
+  "content": "<p><a href=\"http://pan.baidu.com/s/1c0F6wxi\">libevent-2.0.12-stable.tar.gz</a></p>\n\n<p><a href=\"http://pan.baidu.com/s/1gd3oUKb\">tokyocabinet-1.4.47.tar.gz</a></p>\n\n<p><a href=\"http://pan.baidu.com/s/1o65c8d0\">httpsqs-1.7.tar.gz</a></p>\n\n<hr/>\n\n<p>安装介绍请看  <a href=\"http://zyan.cc/httpsqs/7/1/\">张宴博客</a>\n安装过程出现的error自行百度，不难，\nconfigure 第二个东西的时候，会提示缺少 zlib，执行 <code>yum install bzip2-devel</code> 即可 </p>",
+  "createdAt": 1419482880,
+  "modified": 1419576218
+}

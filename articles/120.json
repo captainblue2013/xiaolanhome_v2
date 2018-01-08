@@ -1,0 +1,10 @@
+{
+  "id": "120",
+  "title": "[Angular]数据和表现的分离，那种感觉太美妙",
+  "keywords": [
+    "angular"
+  ],
+  "content": "<p>之前用<code>Angular</code>的循环输出<code>ng-repeat</code>的时候，都是顺序输出集合内容的。\n今天有个需求要将数据<code>倒序输出</code>，一开始的想法是将集合内的数据反序一下，\n输出来就是倒序了。</p>\n\n<h1>但是</h1>\n\n<p>一般“但是”后面都是大新闻。\n我仔细想过，这样改变数据层，以适应表现层的变化，违背了这个框架本事的精髓，带来了非常大的耦合。</p>\n\n<p>因为这样去操作数据，这个数据已经不是本身的<code>抽象定义</code>，而是变成了针对<code>视图</code>定制的模型。</p>\n\n<p>于是我打算，在不改变数据层本心的基础上，实现倒序输出。</p>\n\n<p>还好，Angular提供了这样的方法，在循环输出的时候加上 orderBy选项即可，如下:\n<code> ng-repeat=&quot;message in messages.live | orderBy:&#39;-time&#39;&quot; </code></p>\n\n<p>总结下，像比如MVC这些体系下，一般表现层变化，万不得已（比如增加东西）不要改变数据模型。</p>\n\n",
+  "createdAt": 1411704540,
+  "modified": 1415586330
+}

@@ -11,9 +11,9 @@
         <div id="list"  data-am-observe>
     {% for item in list %}
         <div class="xl-article">
-            <span class="date am-monospace">{{item._source.modified}}</span>
-            <a target="_blank" href="/article/{{item._id}}" class="title am-text-lg">{{item._source.title}}</a>
-            {% for tag in item._source.keywords %}<span class="tag tc-{{ (tag+'').charAt(0).charCodeAt()%4 }} tc-b-{{ (tag+'').charAt(0).charCodeAt()%4 }}">{{tag}}</span>{% endfor %}
+            <span class="date am-monospace">{{item.modified}}</span>
+            <a target="_blank" href="/article/{{item.id}}" class="title am-text-lg">{{item.title}}</a>
+            {% for tag in item.keywords %}<span class="tag tc-{{ (tag+'').charAt(0).charCodeAt()%4 }} tc-b-{{ (tag+'').charAt(0).charCodeAt()%4 }}">{{tag}}</span>{% endfor %}
         </div>
     {% endfor %}
         </div>

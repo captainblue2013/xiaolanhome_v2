@@ -1,0 +1,12 @@
+{
+  "id": "145",
+  "title": "用setTimeout来做循环，实现串行效果",
+  "keywords": [
+    "js",
+    "javascript",
+    "timer"
+  ],
+  "content": "<h2>背景</h2>\n\n<p>javascript 里，我们一般用setInterval方法来实现一个定时循环业务，函数原型如下：</p>\n\n<pre><code>setInterval(function(){\n    //这里放你要执行的业务，后面的参数是时间，单位毫秒，1秒=1000毫秒，比如\n    console.log(&#39;哈&#39;);\n},5000);</code></pre>\n\n<p>上面的代码，单独执行的时候，效果诚然是如我们所想的：</p>\n\n<pre><code>哈    哈    哈    哈    （循环 ）</code></pre>\n\n<h1>但是，问题来了。</h1>\n\n<p><code>javascript 是单进程的，即时是在浏览器还是在服务端node，这时候问题来了。</code>\n而 <code>异步操作次序的不确定性</code> ，一个程序里不可能仅仅这几行代码，有可能出现一个情况，\n就是前一个callback（其他行为，比如写入一个大文件）执行的时间很长，回调队列处于阻塞状态，\n而你的<code>哈</code>正在以每5秒一个的频率进入队列。然后你可能看到的是这样的：</p>\n\n<pre><code>哈    哈  （某长时间操作） 哈哈哈哈哈哈    哈    哈    哈   ......</code></pre>\n\n<p>中间某一段，因为回调堆积，引起的瞬间打印多个<code>哈</code>,这并不是我们想看到的。</p>\n\n<p><code>===================================================================</code></p>\n\n<h1>怎么办呢？</h1>\n\n<p>我们可以用 <code>setTimeout</code> 来实现，它的参数列表和上面的一样，区别是这个逻辑只执行一次。\n惯例先上代码：</p>\n\n<pre><code>//先把逻辑定义成一个函数\nvar do_sth = function(){\n    console.log(&#39;哈&#39;);\n    //然后用神奇的setTimeout,还是5秒\n    setTimeout(function(){\n        //注意了，调用自己\n        do_sth();\n    },5000);\n};</code></pre>\n\n<p>以上代码就是，输出了第一个<code>哈</code>以后，再申请下一个延时操作。\n这样，就能够让每个<code>哈</code>一个跟一个的输出，而不会出现回调堆积的情况。</p>\n\n<h2>新技能GET！！</h2>\n\n<p>后话：\n用这样的方法，可能会出现两次间隔超出5秒的情况，其实上面两种都会有这种情况。\n用setTimeout的意义在于解决堆积，避免一次性同时触发（尤其是一些IO操作）。</p>",
+  "createdAt": 1413635460,
+  "modified": 1415951975
+}

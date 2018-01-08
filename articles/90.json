@@ -1,0 +1,12 @@
+{
+  "id": "90",
+  "title": "【JS】为什么输出444",
+  "keywords": [
+    "js",
+    "javascript",
+    "异步"
+  ],
+  "content": "<h2>首先感谢大佳提出这个很典(dou)型(bi)的问题，对已理解异步是很有帮助的，首先看题。</h2>\n\n<pre><code>for(var a=1;a&lt;=3;a++){\n    setTimeout(function(){\n        console.log(a);\n    },0);\n}</code></pre>\n\n<p>大佳一定迫不及待了，我们先看一下<code>setTimeout</code> 。</p>\n\n<pre><code>setTimeout(code,millisec)</code></pre>\n\n<p><code>code</code> 要执行的代码，可以用高阶函数传入。\n<code>millisec</code> 毫秒数，就是多少时间以后 执行code</p>\n\n<h3>这个操作会发起一个异步，意在<code>millisec</code> 毫秒后执行<code>code</code>。</h3>\n\n<p>OK,你听我说完，\n好像没什么问题，1,2,3, 输出很明确是不是？</p>\n\n<h1>大佳你错了！</h1>\n\n<p>这个连DSG都懂了，答案是 333，哦不，444 。</p>\n\n<hr/>\n\n<p>割割割割割割割割割割割割割割割割割割割割割割割割</p>\n\n<hr/>\n\n<h1>接下来就是见证JJ的时刻了。</h1>\n\n<p>先说一下JS执行任务的模式，JS是单线程的，每次只能有一个任务执行，\n就好比一个队列，如图：\n<code> ----【任务4】【任务3】【任务2】【任务1】---&gt; </code>\n任何新的任务，都会进到队伍末尾，一个个等待执行，\n当然就包括<code>时机成熟的异步回调</code>。</p>\n\n<p>而在你发起循环的时候，每一个循环已经进到队列了，于是呼，实际情况是这样的：\n<code> ----【a++然后发起异步】【a++然后发起异步】【a++然后发起异步】---&gt; </code>\n然后呢，异步会等到它的时间（<code>millisec</code>），进入队列，于是乎：\n<code> ----【log】【log】【log】【a++然后发起异步】【a++然后发起异步】【a++然后发起异步】---&gt; </code></p>\n\n<h1>答案已经很明显！</h1>\n\n<p>至于你问，这个延时是0啊，我只能告诉你，那不是真正的<code>0</code>，下一个循环进入队列的间隔，也是很短，至于为什么 下一个循环能更快进入队列，我们下一节再讲。</p>",
+  "createdAt": 1410544560,
+  "modified": 1415952121
+}

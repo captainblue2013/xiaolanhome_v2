@@ -1,0 +1,10 @@
+{
+  "id": "249",
+  "title": "[ Javascript探究 ]  delete",
+  "keywords": [
+    "javascript"
+  ],
+  "content": "<p>1,对象属性删除</p>\n\n<pre><code>function fun(){\n   this.name = &#39;mm&#39;;\n}\n\nvar obj = new fun();\n\nconsole.log(obj.name);//mm\n\ndelete obj.name;\n\nconsole.log(obj.name); //undefined</code></pre>\n\n<p>2,变量删除</p>\n\n<pre><code>var name = &#39;lily&#39;;\ndelete name;\nconsole.log(name); //lily</code></pre>\n\n<p><code>直接用delelte删除不了变量</code></p>\n\n<p>3,删除不了原型链中的变量</p>\n\n<pre><code>fun.prototype.age = 18;\ndelete obj.age;\nconsole.log(obj.age) //18</code></pre>",
+  "createdAt": 1431399454,
+  "modified": 1431399454
+}

@@ -1,0 +1,12 @@
+{
+  "id": "181",
+  "title": "Express全局跨域代码段",
+  "keywords": [
+    "node",
+    "express",
+    "跨域"
+  ],
+  "content": "<p><pre><code>\napp.all(&#39;*&#39;, function(req, res, next) {\n    res.header(&quot;Access-Control-Allow-Origin&quot;, &quot;*&quot;);\n    res.header(&quot;Access-Control-Allow-Headers&quot;, &quot;Content-Type,Content-Length, Authorization, Accept,X-Requested-With&quot;);\n    res.header(&quot;Access-Control-Allow-Methods&quot;,&quot;PUT,POST,GET,DELETE,OPTIONS&quot;);\n    res.header(&quot;X-Powered-By&quot;,&#39; 3.2.1&#39;);\n    if(req.method==&quot;OPTIONS&quot;) res.send(200);\n    else  next();\n});\n</code></pre>\n 通过上面代码设置全部路由都允许跨域，每个参数的含义，自行搜索。\n马克专用</p>",
+  "createdAt": 1414262558,
+  "modified": 1414262558
+}

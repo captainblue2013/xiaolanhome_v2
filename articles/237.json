@@ -1,0 +1,10 @@
+{
+  "id": "237",
+  "title": "［备忘］两条命令升级node版本",
+  "keywords": [
+    "node"
+  ],
+  "content": "<p><code> npm install -g n </code>\n安装  n   （神器）</p>\n\n<p><code> n stable </code>\n自动升级到最新版</p>\n\n<p>过程中可能需要权限，最好用sudo运行</p>",
+  "createdAt": 1427944500,
+  "modified": 1427944591
+}

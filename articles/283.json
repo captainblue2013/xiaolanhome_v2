@@ -1,0 +1,10 @@
+{
+  "id": "283",
+  "title": "对象的成员函数，不要偷偷地修改一些数据",
+  "keywords": [
+    "oop"
+  ],
+  "content": "<p>请看一段代码：</p>\n\n<pre><code>    $this-&gt;setTitle(&#39;title&#39;);\n\n\n    //in class Article\n    public function setTitle($title){\n        $this-&gt;title = $title;\n\n        $this-&gt;keywords = $this-&gt;getKeywords();\n        $this-&gt;descriptions = $this-&gt;getDescriptions();\n    }</code></pre>\n\n<p>这里的setTitle 就偷偷地修改了这个成员的 keyword和descriptions，\n就算这样的代码运行起来没有错，但这个做法都是不推荐的。然而很多人都有犯这样的错误，偷懒、无原则地封装逻辑。</p>\n\n<p>记住一个函数，不要做超出自己范围的行为，不要做自己名字没有交代的事情。</p>\n\n<p>代码首先是给人看的，其次才是计算机。</p>",
+  "createdAt": 1460084762,
+  "modified": 1460084762
+}

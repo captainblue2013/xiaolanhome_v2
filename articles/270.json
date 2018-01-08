@@ -1,0 +1,8 @@
+{
+  "id": "270",
+  "title": "读《减少switch case语句的使用》有感",
+  "keywords": [],
+  "content": "<h3>原文地址</h3>\n\n<pre><code>http://log.fyscu.com/index.php/archives/269/</code></pre>\n\n<h4>现在我是作为一个长者，给你们一些人生经验</h4>\n\n<hr/>\n\n<h4>原文</h4>\n\n<pre><code>因为switch...case结构要求，在每一个case的最后一行必须是break语句</code></pre>\n\n<h4>评：</h4>\n\n<pre><code>并不是“必须break”，反而在实际编码中，经常少写一些break，以实现分类、聚合的功能\n比如：\nswitch (day){\n    case &#39;星期一&#39;:\n    case &#39;星期二&#39;:\n    case &#39;星期三&#39;:\n    case &#39;星期四&#39;:\n    case &#39;星期五&#39;:\n        return &#39;工作日&#39;;\n        break;\n    case &#39;星期六&#39;:\n    case &#39;星期日&#39;:\n        return &#39;假日&#39;;\n        break;\n}</code></pre>\n\n<h4>结论</h4>\n\n<pre><code>啪！</code></pre>\n\n<hr/>\n\n<h4>原文</h4>\n\n<pre><code>建议改写成对象结构</code></pre>\n\n<h4>评</h4>\n\n<pre><code>太恶心了！\n用原本case的字符串来做对象成员，如果是 &#39;baidu&#39;,&#39;腾讯&#39;,&#39;360&#39; 呢？\nswitch本来的作用就是匹配变量不同的字符串，分流到不同的逻辑，可以说是这个个案里最理想的解决办法，\n而用原文中的“面向对象”的方法，主要有如下问题：\n1.总不能用中文key吧\n2.不能聚合，除非先定义function，多个key指向同一个function，那样实际上更乱\n3.当输入枚举增加，你就要修改object，违反了&quot;开-闭 原则&quot;(http://log.fyscu.com/index.php/archives/60/),不是一种好现象\n4.垃圾回收的时候，如果返回值没有被释放，那么doAction即使已经执行完了，也会因此而不被回收，这种习惯有OOM的风险\n5.如果有需要处理上下文中的变量，返回的function的参数表就会和业务耦合得很厉害（这一点自己领会）\n6.凑数</code></pre>\n\n<h4>结论</h4>\n\n<pre><code>啪！啪！</code></pre>\n\n<hr/>\n\n<h4>小蓝说</h4>\n\n<pre><code>其实switch...case 作为几乎所有语言基本语法的一部分，肯定是千锤百炼的，无需怀疑的，\n一些忘记写break之类的问题，一方面多从自己身上找原因，理清思路才是真，\n此外也可以换个好点的IDE，比如webstorm，设置一些代码模板，自动break。\n\n而对于原文中的 object 方法，属于JS比较有特点的对象声明方式，我们尽量还是用比较通用化的办法，\n积累的经验以后在其他语言也能用。</code></pre>",
+  "createdAt": 1446552360,
+  "modified": 1446552485
+}

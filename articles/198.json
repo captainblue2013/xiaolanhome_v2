@@ -1,0 +1,10 @@
+{
+  "id": "198",
+  "title": "【记录】javascript获取页面的referer",
+  "keywords": [
+    "javascript"
+  ],
+  "content": "<p>服务端自不多说，通过<code>headers</code>信息即可，而在浏览器端，也是有办法的。</p>\n\n<pre><code>var getReferrer=function() {\n\n    var referrer = &#39;&#39;;\n\n    try {\n\n        referrer = window.top.document.referrer;\n\n    } catch(e) {\n\n        if(window.parent) {\n\n            try {\n\n                referrer = window.parent.document.referrer;\n\n            } catch(e2) {\n\n                referrer = &#39;&#39;;\n\n            }\n\n        }\n\n    }\n\n    if(referrer === &#39;&#39;) {\n\n        referrer = document.referrer;\n\n    }\n\n    return referrer;\n\n};</code></pre>\n\n<p>单纯记录一下，记不起的时候看看</p>",
+  "createdAt": 1415783460,
+  "modified": 1415951062
+}

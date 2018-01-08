@@ -3,21 +3,14 @@
  */
 
 const articleModel = require('../models/article');
-const redis = global.app.libs['redis'];
 
 var Controller = {};
 
 Controller.tagSet = null;
 
 Controller.index = (req, res) => {
-  articleModel.list()
-    .then((list)=> {
-      res.render('index.html', {'list': list});
-    })
-    .catch((err)=> {
-      console.log(err);
-      res.render('error.html', {});
-    });
+  let list = articleModel.list();
+  res.render('index.html', {'list': list});
 };
 
 Controller.item = (req, res) => {
@@ -25,24 +18,13 @@ Controller.item = (req, res) => {
   if(req.params[0]!=='article'){
     id = req.params[0];
   }
-  articleModel.detail(id)
-    .then((item) => {
-      redis.increase(['blog:view:count','a'+id,1],(e,r)=>{
-        if(e){
-          console.log(e,r);
-        }
-      });
-      return item;
-    })
-    .then((item) => {
-      item ?
-        res.render('detail.html', {'item': item})
-        : res.render('error.html', {});
-    })
-    .catch((err) => {
-      console.log(err);
-      res.render('error.html', {});
-    });
+  let item = articleModel.detail(id);
+  
+  if(item){
+    res.render('detail.html', {'item': item});
+  }else{
+    res.render('error.html', {});
+  }
 };
 
 Controller.about = (req, res) => {
@@ -66,17 +48,9 @@ Controller.building = (req, res) => {
 };
 
 const loadTagSet = () => {
-  articleModel.list({size: 999})
-    .then((list)=> {
-      Controller.tagSet = new Set();
-      for (let k in list) {
-        list[k]._source.keywords.forEach((item)=> {
-          Controller.tagSet.add(item);
-        });
-      }
-    });
+  Controller.tagSet = new Set(Object.keys(process.localArticle.se));
+  
 };
 
 module.exports = Controller;
 
-loadTagSet();

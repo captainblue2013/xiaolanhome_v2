@@ -1,0 +1,8 @@
+{
+  "id": "256",
+  "title": " 实测 对数字字符串转成数字的效率比较",
+  "keywords": [],
+  "content": "<p>代码：</p>\n\n<pre><code>var a = &#39;1&#39; ;\nfor (var i = 0; i &lt; 100000000; i++) {\n\t    parseInt(a);  //方案一\n    // a * 1;   //方案二\n}\nconsole.log(process.uptime());</code></pre>\n\n<p>结果，单位秒：\n方案一： 1.559   ，   1.492   ，  1.523\n方案二：3.841  ，    3.899   ，   3.877</p>",
+  "createdAt": 1431750008,
+  "modified": 1431750008
+}

@@ -1,0 +1,13 @@
+{
+  "id": "206",
+  "title": "yum安装memcache到CentOS",
+  "keywords": [
+    "linux",
+    "memcache",
+    "memcached",
+    "centos"
+  ],
+  "content": "<h3>第一步</h3>\n\n<pre><code>yum install libevent</code></pre>\n\n<h3>第二步</h3>\n\n<pre><code>wget http://dag.wieers.com/rpm/packages/rpmforge-release/rpmforge-release-0.3.6-1.el5.rf.i386.rpm\nrpm -ivh rpmforge-release-0.3.6-1.el5.rf.i386.rpm</code></pre>\n\n<h3>第三步</h3>\n\n<pre><code>yum -y install –enablerepo=rpmforge memcached php-pecl-memcache\npecl install memcache</code></pre>\n\n<h3>启动</h3>\n\n<pre><code>servive memcached start</code></pre>",
+  "createdAt": 1416535920,
+  "modified": 1429899687
+}

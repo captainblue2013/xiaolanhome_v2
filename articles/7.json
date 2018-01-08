@@ -1,0 +1,11 @@
+{
+  "id": "7",
+  "title": "Express怎么获取用户IP",
+  "keywords": [
+    "node",
+    "express"
+  ],
+  "content": "<p>如果是直接启动node程序的</p>\n\n<pre><code>req.connection.remoteAddress</code></pre>\n\n<p>如果是使用了nginx反向代理,在nginx相关配置地方加上</p>\n\n<pre><code>proxy_set_header X-Real-IP $remote_addr;\nproxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</code></pre>\n\n<p>然后代码里使用</p>\n\n<pre><code>var headers = req.headers;\nconsole.log(headers[&#39;x-real-ip&#39;] || headers[&#39;x-forwarded-for&#39;]);</code></pre>",
+  "createdAt": 1404330120,
+  "modified": 1410327385
+}

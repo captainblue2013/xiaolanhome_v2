@@ -66,10 +66,10 @@
             var _html = '';
             var item = null;
             for(var k in list){
-                if(list[k]._id && (item = list[k]._source)){
+                if(list[k].id && (item = list[k])){
                     _html += '<div class="xl-article">'
                         +'<span class="date am-monospace">'+item.modified+'</span>'
-                        +'<a class="title am-text-lg" data-score="'+list[k]._score+'" href="/article/'+list[k]._id+'" target="_blank">'+item.title+'</a>'
+                        +'<a class="title am-text-lg"  href="/article/'+list[k].id+'" target="_blank">'+item.title+'</a>'
                         +renderTags(item.keywords)
                         +'</div>';
                 }

@@ -1,0 +1,12 @@
+{
+  "id": "298",
+  "title": "PHP pdo 事务，代码里的一个容易踩的坑",
+  "keywords": [
+    "php",
+    "pdo",
+    "事务"
+  ],
+  "content": "<p>PHP pdo 在支持事务的存储引擎(innoDB)下,可以使用以下代码实现事务</p>\n\n<pre><code>$pdo-&gt;beginTransaction();\n\ntry{\n    $pdo-&gt;exec(&#39;insert into tt set s=11,t=99 &#39;);\n    $pdo-&gt;commit();\n    // 注意！！\n}catch (Exception $e){\n    var_dump($e);\n    $pdo-&gt;rollback();\n}</code></pre>\n\n<p>上面的逻辑，在数据库插入失败时，会执行<code>rollback</code>，本次事务结束。</p>\n\n<p>表面上看这段代码没有问题，</p>\n\n<p>但是，如果你在上面【注意】的地方，还有其他代码的话。比如：</p>\n\n<pre><code>$pdo-&gt;beginTransaction();\n\ntry{\n    $pdo-&gt;exec(&#39;insert into tt set s=11,t=99 &#39;);\n    $pdo-&gt;commit();\n    // 注意！！\n    throw new Exception(&#39;boom&#39;);\n}catch (Exception $e){\n    var_dump($e);\n    $pdo-&gt;rollback();\n}</code></pre>\n\n<p>这样一来，数据库插入没有问题，顺利<code>commit</code> ，但是catch到了一个其他的异常，</p>\n\n<p>导致<code>rollback</code>也被执行了一次，这时候 <code>pdo</code> 会报一个错误</p>\n\n<pre><code>Uncaught PDOException: There is no active transaction in ...</code></pre>\n\n<p>这是因为 <code>beginTransaction</code> 会让这个事务状态为 <code>active</code>,</p>\n\n<p>而 <code>commit</code> 或 <code>rollback</code> 会让事务变成 <code>inactive</code> 。</p>\n\n<p>显而易见，当然不能执行了 <code>commit</code> 后又执行 <code>rollback</code> 了。</p>\n\n<h3>所以， commit 应该写在 try 语句块的最后一行。</h3>",
+  "createdAt": 1470300483,
+  "modified": 1470300483
+}
