@@ -1,0 +1,15 @@
+version: '2'
+services:
+  xiaolanhome:
+    image: captainblue2013/xiaolanhome_v2:master
+    stdin_open: true
+    tty: true
+    labels:
+      io.rancher.container.pull_image: always
+  proxy:
+    image: rancher/lb-service-haproxy:v0.7.9
+    ports:
+    - 3002:3002/tcp
+    labels:
+      io.rancher.container.agent.role: environmentAdmin
+      io.rancher.container.create_agent: 'true'

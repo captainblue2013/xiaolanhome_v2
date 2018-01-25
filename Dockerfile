@@ -6,8 +6,8 @@ WORKDIR /app
 
 RUN mv ./config/config.template.js ./config/config.js
 
-RUN npm install --registry=https://registry.npm.taobao.org
+RUN yarn
 
 EXPOSE 3001
 
-CMD ["node", "server.js"]  
+CMD ["npm", "start"]  

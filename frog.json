@@ -1,0 +1,9 @@
+{
+  "type": "node",
+  "name": "xiaolan",
+  "git": {
+    "remote": ""
+  },
+  "internal": false,
+  "standalone":true
+}
