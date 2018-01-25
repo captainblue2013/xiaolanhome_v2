@@ -1,0 +1,12 @@
+{
+  "id": 308,
+  "title": "从一个页面开关, 说说有限状态机",
+  "keywords": [
+    "js",
+    "javascript",
+    "有限状态机"
+  ],
+  "content": "<!--markdown-->> 故事起源于最近看一位朋友在实现一个 播放/暂停 按钮时, 一些思路上的碰撞,\r\n> 于是整理出本文, 讲解一下如何用 有限状态机 使代码更简洁可靠.\r\n\r\n![](http://bluestest.oss-cn-shanghai.aliyuncs.com/on_off.png)\r\n\r\n我们想实现上面这样的按钮交互, 先看看原版实现:\r\n\r\n\t$('#botton').on('click', function(){\r\n\t\tif ( $(this).text() === 'OFF' ){\r\n\t\t\t//把按钮的文案改变一下\r\n\t\t\t$(this).text('ON');\r\n\t\t\t//开始播放\r\n\t\t\t$('#player').start();\r\n\t\t} else {\r\n\t\t\t$(this).text('OFF');\r\n\t\t\t$('#player').stop();\r\n\t\t}\r\n\t});\r\n\t\r\n这是一个基本的实现方式, 也是一个最简单的方式.\r\n\r\n不过,\r\n\r\n按照这个方式来做有几个不太优雅的地方:\r\n\r\n- 如果点击按钮之后, 需要做的操作增加, 会让`if / else`里面的代码越来越臃肿.\r\n- 如果按钮的变化不止 `on/off`两种, 我们可能需要些一堆 `else if`或者用`switch / case`\r\n\r\n#### 针对以上状况, 我提议试试使用**有限状态机**来解决问题\r\n\r\n先看代码:\r\n\r\n\tvar fsm = (function(){\r\n\t\t//初始状态\r\n\t\tvar status = 1; \r\n\t\t\r\n\t\t//状态对应的操作\r\n\t\tvar mapping = {\r\n\t\t\t'1': {\r\n\t\t\t\ttext:'ON',\r\n\t\t\t\taction: $('#player').start\r\n\t\t\t},\r\n\t\t\t'-1': {\r\n\t\t\t\ttext:'OFF',\r\n\t\t\t\taction: $('#player').stop\r\n\t\t\t},\r\n\t\t};\r\n\t\t\r\n\t\treturn function(btn){\r\n\t\t\t//通过 *-1 实现status从 1/-1 切换\r\n\t\t\tstatus *= -1;\r\n\t\t\tbtn.text( mapping[status].text );\r\n\t\t\tvar fn = mapping[status].action;\r\n\t\t\tfn();\r\n\t\t}\r\n\t})();\r\n\t\r\n\t$('#botton').click(function(){\r\n\t\tfsm(this);\r\n\t});\r\n\t\r\n阅读上面代码能发现, 对`botton`的点击事件处理, 只需要调用`fsm`函数即可, 内部的变化和操作, 都不需要暴露出来.\r\n\r\n`fsm`内部, 通过`mapping`来定义和限制行为, 唯一能够改变的只有`status`,\r\n\r\n这样的好处在于, 能够避免在编码过程中人为的错误, 因为事件响应部分只能有限的操作状态机的`status`,而不是直接参与`botton`的行为与表现.\r\n\r\n同时, 功能的扩展, 状态的增减, 都只需要在`mapping`里面定义好, 非常利于扩展与维护.\r\n\r\n\r\n",
+  "createdAt": 1516850982,
+  "modified": 1516850982
+}

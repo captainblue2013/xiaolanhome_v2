@@ -7,7 +7,6 @@
     "fy-mysql": "^0.2.11",
     "markdown": "^0.5.0",
     "moment": "^2.13.0",
-    "request": "^2.72.0",
     "request-agent": "^1.0.2-b",
     "xiaolan": "1.2.13"
   },
@@ -18,7 +17,7 @@
     "gulp-uglify": "^2.0.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 0"
   },
   "repository": {
     "type": "git",
