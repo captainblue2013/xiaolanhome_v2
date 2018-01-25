@@ -4,8 +4,6 @@ services:
     image: captainblue2013/xiaolanhome_v2:master
     stdin_open: true
     tty: true
-    labels:
-      io.rancher.container.pull_image: always
   proxy:
     image: rancher/lb-service-haproxy:v0.7.9
     ports:
