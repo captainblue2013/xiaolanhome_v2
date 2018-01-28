@@ -1,6 +1,6 @@
 version: '2'
 services:
-  xiaolanhome:
+  captainblue2013-xiaolanhome-v2:
     image: captainblue2013/xiaolanhome_v2:master
     stdin_open: true
     tty: true
