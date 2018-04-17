@@ -3,9 +3,9 @@
  */
 
 //引入配置文件
-var config = require('./config/config');
+let config = require('./config/config');
 //引入小蓝框架
-var xiaolan = require('xiaolan')(config);
+let xiaolan = require('xiaolan')(config);
 
 const localArticle = require('./models/localArticle');
 
