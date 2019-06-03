@@ -12,15 +12,15 @@ const content = fs.readFileSync(file).toString();
 
 const html = Md.toHTML(content);
 
-const id = 319;
+const id = 320;
 const t = Date.now();
 fs.writeFileSync(`./articles/${id}.json`, JSON.stringify({
   id,
-  title: '使用 WaitGroup 做并发控制',
+  title: file.split('/').pop().replace('.md',''),
   keywords: [
     'go',
     'golang',
-    'waitgroup'
+    'channel'
   ],
   content: html,
   createdAt: Number.parseInt(t / 1000),
