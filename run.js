@@ -12,15 +12,15 @@ const content = fs.readFileSync(file).toString();
 
 const html = Md.toHTML(content);
 
-const id = 318;
+const id = 319;
 const t = Date.now();
 fs.writeFileSync(`./articles/${id}.json`, JSON.stringify({
   id,
-  title: '2018总结: 你咋才来啊',
+  title: '使用 WaitGroup 做并发控制',
   keywords: [
-    'docker',
-    'devops',
-    'node'
+    'go',
+    'golang',
+    'waitgroup'
   ],
   content: html,
   createdAt: Number.parseInt(t / 1000),
