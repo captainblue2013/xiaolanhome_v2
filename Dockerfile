@@ -6,7 +6,7 @@ WORKDIR /app
 
 RUN mv ./config/config.template.js ./config/config.js
 
-RUN yarn
+RUN npm i
 
 EXPOSE 3001
 
