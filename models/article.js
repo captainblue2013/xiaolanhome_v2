@@ -1,10 +1,4 @@
-/**
- * Created by lanhao on 16/6/2.
- */
-
-'use strict';
-
-const requestAgent = require('request-agent').init();
+const fs = require('fs');
 const moment = require('moment');
 
 

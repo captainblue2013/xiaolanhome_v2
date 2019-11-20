@@ -12,15 +12,13 @@ const content = fs.readFileSync(file).toString();
 
 const html = Md.toHTML(content);
 
-const id = 320;
+const id = 322;
 const t = Date.now();
 fs.writeFileSync(`./articles/${id}.json`, JSON.stringify({
   id,
   title: file.split('/').pop().replace('.md',''),
   keywords: [
-    'go',
-    'golang',
-    'channel'
+    'Shape'
   ],
   content: html,
   createdAt: Number.parseInt(t / 1000),

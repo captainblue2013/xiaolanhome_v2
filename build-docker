@@ -1,7 +1,5 @@
 echo "building..."
 
-docker rmi -f registry.cn-hangzhou.aliyuncs.com/lanhao/xiaolanhome:latest xiaolanhome:latest
-
 docker build -t xiaolanhome:latest .
 
 docker tag xiaolanhome:latest registry.cn-hangzhou.aliyuncs.com/lanhao/xiaolanhome:latest
