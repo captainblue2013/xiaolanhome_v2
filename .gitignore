@@ -6,3 +6,4 @@ node_modules
 run.js
 test.js
 config/config.js
+.DS_Store
