@@ -12,13 +12,14 @@ const content = fs.readFileSync(file).toString();
 
 const html = Md.toHTML(content);
 
-const id = 323;
+const id = 324;
 const t = Date.now();
 fs.writeFileSync(`./articles/${id}.json`, JSON.stringify({
   id,
   title: file.split('/').pop().replace('.md',''),
   keywords: [
-    '命令行'
+    'Javascript',
+    '类型转换'
   ],
   content: html,
   createdAt: Number.parseInt(t / 1000),

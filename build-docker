@@ -1,8 +1,8 @@
 echo "building..."
 
-docker build -t xiaolanhome:1126 .
+docker build -t xiaolanhome:1231 .
 
-docker tag xiaolanhome:1126 registry.cn-hangzhou.aliyuncs.com/lanhao/xiaolanhome:1126
+docker tag xiaolanhome:1231 registry.cn-hangzhou.aliyuncs.com/lanhao/xiaolanhome:1231
 
-docker push registry.cn-hangzhou.aliyuncs.com/lanhao/xiaolanhome:1126
+docker push registry.cn-hangzhou.aliyuncs.com/lanhao/xiaolanhome:1231
 

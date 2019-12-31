@@ -6,12 +6,13 @@
   "dependencies": {
     "fy-mysql": "^0.2.11",
     "markdown": "^0.5.0",
+    "ml2md": "file:../ml2md",
     "moment": "^2.13.0",
     "request-agent": "^1.0.2-b",
-    "xiaolan": "1.2.13"
+    "xiaolan": "^1.7.0"
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-less": "^3.4.0",
     "gulp-replace": "^0.6.1",
     "gulp-uglify": "^2.0.0"
