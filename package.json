@@ -7,7 +7,7 @@
     "fy-mysql": "^0.2.11",
     "markdown": "^0.5.0",
     "ml2md": "file:../ml2md",
-    "moment": "^2.13.0",
+    "moment": "^2.29.4",
     "request-agent": "^1.0.2-b",
     "xiaolan": "^1.7.0"
   },
